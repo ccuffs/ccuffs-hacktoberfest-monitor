@@ -1,12 +1,12 @@
 <p align="center">
-    <img width="400" height="200" src=".github/logo.png" title="Logo do projeto"><br />
+    <img width="400" height="200" src="https://cc.uffs.edu.br/images/posts/hacktoberfest-2020.png" title="Logo do projeto"><br />
     <img src="https://img.shields.io/maintenance/yes/2020?style=for-the-badge" title="Status do projeto">
     <img src="https://img.shields.io/github/workflow/status/ccuffs/template/ci.uffs.cc?label=Build&logo=github&logoColor=white&style=for-the-badge" title="Status do build">
 </p>
 
 # Título
+O CCUFFS Hacktoferfest Monitor é uma aplicação que tem o objetivo de acompanhar a participação e aumentar o engajamento dos estudantes no evento [Hacktoferfest CCUFFS](https://cc.uffs.edu.br/noticias/2020/10/13/hacktoberfest-2020/).
 
-Coloque uma descrição do projeto aqui. Geralmente essa descrição tem de duas a três linhas de tamanho. Ela deve dar uma visão geral sobre o que é o projeto, ex.: tecnologia usada, filosofia de existência, qual problema tenta-se resolver, etc. Se você precisa escrever mais que 3 linhas de descrição, crie subseções.
 
 > **IMPORTANTE:** coloque aqui alguma mensagem que é muito relevante aos usuários do projeto, se for o caso.
 
@@ -64,6 +64,4 @@ Veja todas as alterações desse projeto no arquivo [CHANGELOG.md](CHANGELOG.md)
 
 Abaixo está uma lista de links interessantes e projetos similares:
 
-* [Outro projeto](https://github.com/projeto)
-* [Projeto inspiração](https://github.com/projeto)
-* [Ferramenta semelhante](https://github.com/projeto)
+* [GitMemory](https://gitmemory.com/)
