@@ -1,9 +1,5 @@
 name: ci.uffs.cc
-on:
-  push:
-    branches:    
-      - master
-      - dev
+on: [push, pull_request]
 env:
   CI_HOST: ci.uffs.cc
   CI_WEB_DIRECTORY: /home/ccuffsci/ci.uffs.cc/ccuffs-hacktoberfest-monitor
@@ -16,7 +12,7 @@ jobs:
     - uses: actions/checkout@v1
     - uses: actions/setup-node@v1
       with:
-        node-version: '8.10'
+        node-version: '14.10'
     - name: Extract branch name
       shell: bash
       run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
@@ -37,7 +33,7 @@ jobs:
     - name: Deploy site via SSH
       uses: garygrossgarten/github-action-scp@release
       with:
-        local: ${{ github.workspace }}/public/
+        local: ${{ github.workspace }}/dist/
         remote: ${{ env.CI_WEB_DIRECTORY }}/${{ steps.extract_branch.outputs.branch }}/${{ github.sha }}/
         host: ${{ env.CI_HOST }}
         username: ${{ secrets.CI_USERNAME }}
