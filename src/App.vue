@@ -1,71 +1,42 @@
 <template>
     <div id="app">
-        <div class="px-4 pt-4">
-            <div class="d-lg-flex flex-wrap justify-content-center"
-            >
-                <template 
-                    v-for="owner in owners"
-                >
-                    <Repository
-                        v-for="repo in owner.repos"
-                        :key="repo.name"
-                        :name="repo.name"
-                        :owner="owner.name"
-                        :image="repo.image"
-                    />
-
-                    <input type="hidden" :key="owner.name">
-                </template>
-            </div>
-        </div>
-        <TheFooter/>
+        <transition name="fade" mode="out-in">
+            <router-view/>
+        </transition>   
     </div>
 </template>
 
 <script>
 
-import Owners from './data/owners'
-import Repository from './components/Repository'
-
 export default {
     name: 'App',
     data(){
-        return {}     
+        return {}
     },
-    components: {
-        Repository
-    },
-    computed: {
-        owners(){
-            return Owners;
-        }
+    watch: {
+        '$route'(to) {
+            if(to.name == "Show") this.transitionName = "slide-fade";
+            else this.transitionName = "";
+        } 
     }
-
 }
 </script>
 
 <style>
-#app {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: white;
-  background-color: #303030;
-}
+    #app {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+        color: white;
+        background-color: #303030;
+    }
 
-.repository:last-of-type {
-    margin-bottom: 0 !important;
-}
+    .fade-enter, .fade-leave-to {
+        opacity: 0;
+        transform: translateX(-2em);
+    }
 
-.justify-content-center {
-    justify-content: center;
-}
-
-.orange {
-    color: #ff9900;
-}
-
-.light-orange {
-    color: #ffab40;
-}
+    .fade-enter-active, .fade-leave-active {
+        transition: all .3s ease-in-out;
+    }
 </style>
