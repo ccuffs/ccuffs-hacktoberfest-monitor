@@ -2,18 +2,40 @@ export default [
     {
         "name": "ccuffs",
         "repos": [
-            "ideias",
-            "cc.uffs.edu.br",
-            "guia-tcc",
-            "provas-uffs",
-            "app-cc"
+            {
+                "name": "ideias",
+                "image": "ideias.png"
+            },
+            {
+                "name": "cc.uffs.edu.br",
+                "image": "ccuffs.svg"
+            },
+            {
+                "name": "guia-tcc",
+                "image": "logo-template.png"
+            },
+            {
+                "name": "provas-uffs",
+                "image": "logo-template.png"
+            },
+            {
+                "name": "app-cc",
+                "image": "logo-template.png"
+            }
+            
         ]
     },
     {
         "name": "grintex",
         "repos": [
-            "dados-uffs",
-            "app-covid"
+            {
+                "name": "dados-uffs",
+                "image": "logo-template.png"
+            },
+            {
+                "name": "app-covid",
+                "image": "app-coronavirus.png"
+            }
         ]
     }
 ]
