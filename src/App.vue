@@ -1,18 +1,40 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div 
+        v-for="owner in owners"
+        :key="owner.name"
+    >
+        <h1>
+            {{ owner.name }}
+        </h1>
+        <div v-for="repo in owner.repos"
+            :key="repo"
+        >
+            <h2>
+                {{ repo }}
+            </h2>
+        </div>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import Owners from './data/owners';
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+    name: 'App',
+    data(){
+        return {}     
+    },
+    components: {
+    },
+    computed: {
+        owners(){
+            return Owners;
+        }
+    }
+
 }
 </script>
 
@@ -22,7 +44,8 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: white;
+  background-color: #183d5d;
   margin-top: 60px;
 }
 </style>
