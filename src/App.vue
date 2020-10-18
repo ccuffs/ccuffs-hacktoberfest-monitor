@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <div class="p-8">
+        <div class="px-8 pt-8">
             <div class="d-lg-flex flex-wrap justify-content-center"
             >
                 <template 
@@ -18,11 +18,7 @@
                 </template>
             </div>
         </div>
-        <footer>
-            <div class="p-4">
-                Ícones feitos por <a href="https://www.flaticon.com/br/autores/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/br/" title="Flaticon"> www.flaticon.com</a>
-            </div>
-        </footer>
+        <TheFooter/>
     </div>
 </template>
 
