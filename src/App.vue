@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <div class="px-8 pt-8">
+        <div class="px-4 pt-4">
             <div class="d-lg-flex flex-wrap justify-content-center"
             >
                 <template 
@@ -53,11 +53,19 @@ export default {
   background-color: #303030;
 }
 
+.repository:last-of-type {
+    margin-bottom: 0 !important;
+}
+
 .justify-content-center {
     justify-content: center;
 }
 
 .orange {
     color: #ff9900;
+}
+
+.light-orange {
+    color: #ffab40;
 }
 </style>

@@ -1,17 +1,19 @@
 <template>
-    <div class="repository col-lg-4 col-12 border">
+    <div class="repository col-lg-4 col-12 mb-4 mr-4 border">
         <div class="p-4">
             <div class="col-12">
                 <img :src="imagePath" alt="image" class="repository__image">
             </div>
             <div class="pt-5">
-                <div class="repository__name">
-                    <h2 class="orange left">
+                <div class="left">
+                    <h2 class="orange">
                         {{ name.toUpperCase() }}
                     </h2>
                 </div>
                 <div class="contributions">
-
+                    <h4 class="left light-orange">
+                        Soon!!
+                    </h4>
                 </div>
             </div>
         </div>
@@ -49,7 +51,6 @@ export default {
     .repository {
         background-color: #4c4c4c;
         min-height: 255px;
-        margin: 0 48px 48px 0;
     }
 
     .repository:hover {
@@ -60,7 +61,7 @@ export default {
         width: inherit;
     }
 
-    .repository__name {
+    .left {
         text-align: left;
     }
 </style>
