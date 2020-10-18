@@ -1,0 +1,37 @@
+<template>
+    <footer>
+        <div class="p-4">
+            Build with 
+            <svg class="footer__heart" viewBox="0 0 32 29.6">
+                <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2
+                c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
+            </svg> 
+            by 
+            <a href="https://pt.wikipedia.org/wiki/C%C3%B3digo_aberto" target="_blank"
+                rel="noopener noreferrer" class="footer__link"
+            >
+                OpenSource Community.
+            </a>
+        </div>
+    </footer>
+</template>
+
+<script>
+export default {
+    name: 'TheFooter'
+}
+</script>
+
+<style>
+    .footer__heart {
+        fill: red;
+        width: 0.8rem;
+        animation: pulse 1s ease infinite;
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.2); }
+        100% { transform: scale(1); }
+    }
+</style>

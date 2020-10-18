@@ -1,28 +1,71 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <div id="app">
+        <div class="px-4 pt-4">
+            <div class="d-lg-flex flex-wrap justify-content-center"
+            >
+                <template 
+                    v-for="owner in owners"
+                >
+                    <Repository
+                        v-for="repo in owner.repos"
+                        :key="repo.name"
+                        :name="repo.name"
+                        :owner="owner.name"
+                        :image="repo.image"
+                    />
+
+                    <input type="hidden" :key="owner.name">
+                </template>
+            </div>
+        </div>
+        <TheFooter/>
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import Owners from './data/owners'
+import Repository from './components/Repository'
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+    name: 'App',
+    data(){
+        return {}     
+    },
+    components: {
+        Repository
+    },
+    computed: {
+        owners(){
+            return Owners;
+        }
+    }
+
 }
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  color: white;
+  background-color: #303030;
+}
+
+.repository:last-of-type {
+    margin-bottom: 0 !important;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.orange {
+    color: #ff9900;
+}
+
+.light-orange {
+    color: #ffab40;
 }
 </style>
