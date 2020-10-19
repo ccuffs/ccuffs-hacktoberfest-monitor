@@ -47,7 +47,7 @@ export default {
 
     methods: {
         showRepo(){
-            this.$router.push({ name: 'Show', params: { name: this.name } });
+            this.$router.push({ name: 'Show', params: { name: this.name, owner: this.owner } });
         }
     }
 }
@@ -61,6 +61,7 @@ export default {
 
     .repository:hover {
         transform: scale(1.02);
+        cursor: pointer;
     }
 
     .repository__image{

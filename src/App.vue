@@ -12,23 +12,24 @@ export default {
     name: 'App',
     data(){
         return {}
-    },
-    watch: {
-        '$route'(to) {
-            if(to.name == "Show") this.transitionName = "slide-fade";
-            else this.transitionName = "";
-        } 
     }
 }
 </script>
 
 <style>
+    @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;1,100&display=swap");
+
     #app {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         text-align: center;
         color: white;
         background-color: #303030;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .bg-secondary {
+        background-color: #4c4c4c;
     }
 
     .fade-enter, .fade-leave-to {
