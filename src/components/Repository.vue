@@ -1,5 +1,5 @@
 <template>
-    <div class="repository col-lg-4 col-12 mb-4 mr-4 border">
+    <div class="repository col-lg-4 col-12 mb-4 mr-4 border" @click="showRepo">
         <div class="p-4">
             <div class="col-12">
                 <img :src="imagePath" alt="image" class="repository__image">
@@ -43,6 +43,12 @@ export default {
             type: String,
             required: true
         }
+    },
+
+    methods: {
+        showRepo(){
+            this.$router.push({ name: 'Show', params: { name: this.name, owner: this.owner } });
+        }
     }
 }
 </script>
@@ -55,6 +61,7 @@ export default {
 
     .repository:hover {
         transform: scale(1.02);
+        cursor: pointer;
     }
 
     .repository__image{

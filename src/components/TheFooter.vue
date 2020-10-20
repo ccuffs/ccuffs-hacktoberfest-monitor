@@ -7,7 +7,7 @@
                 c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
             </svg> 
             by 
-            <a href="https://pt.wikipedia.org/wiki/C%C3%B3digo_aberto" target="_blank"
+            <a href="https://opensource.org/" target="_blank"
                 rel="noopener noreferrer" class="footer__link"
             >
                 OpenSource Community.
@@ -23,10 +23,14 @@ export default {
 </script>
 
 <style>
+    footer {
+        font-size: 1.3rem;
+    }
+
     .footer__heart {
         fill: red;
-        width: 0.8rem;
-        animation: pulse 1s ease infinite;
+        width: 1rem;
+        animation: pulse 1.3s ease infinite;
     }
 
     @keyframes pulse {

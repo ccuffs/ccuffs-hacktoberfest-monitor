@@ -1,71 +1,43 @@
 <template>
     <div id="app">
-        <div class="px-4 pt-4">
-            <div class="d-lg-flex flex-wrap justify-content-center"
-            >
-                <template 
-                    v-for="owner in owners"
-                >
-                    <Repository
-                        v-for="repo in owner.repos"
-                        :key="repo.name"
-                        :name="repo.name"
-                        :owner="owner.name"
-                        :image="repo.image"
-                    />
-
-                    <input type="hidden" :key="owner.name">
-                </template>
-            </div>
-        </div>
-        <TheFooter/>
+        <transition name="fade" mode="out-in">
+            <router-view/>
+        </transition>   
     </div>
 </template>
 
 <script>
 
-import Owners from './data/owners'
-import Repository from './components/Repository'
-
 export default {
     name: 'App',
     data(){
-        return {}     
-    },
-    components: {
-        Repository
-    },
-    computed: {
-        owners(){
-            return Owners;
-        }
+        return {}
     }
-
 }
 </script>
 
 <style>
-#app {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: white;
-  background-color: #303030;
-}
+    @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;1,100&display=swap");
 
-.repository:last-of-type {
-    margin-bottom: 0 !important;
-}
+    #app {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+        color: white;
+        background-color: #303030;
+        font-family: 'Roboto', sans-serif;
+    }
 
-.justify-content-center {
-    justify-content: center;
-}
+    .bg-secondary {
+        background-color: #4c4c4c;
+    }
 
-.orange {
-    color: #ff9900;
-}
+    .fade-enter, .fade-leave-to {
+        opacity: 0;
+        transform: translateX(-2em);
+    }
 
-.light-orange {
-    color: #ffab40;
-}
+    .fade-enter-active, .fade-leave-active {
+        transition: all .3s ease-in-out;
+    }
 </style>
