@@ -7,10 +7,10 @@
                 c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
             </svg> 
             by 
-            <a href="https://opensource.org/" target="_blank"
+            <a href="https://uffs.cc" target="_blank"
                 rel="noopener noreferrer" class="footer__link"
             >
-                OpenSource Community.
+                CCUFFS.
             </a>
         </div>
     </footer>

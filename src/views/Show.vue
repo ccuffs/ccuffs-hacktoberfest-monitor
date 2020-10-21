@@ -11,7 +11,7 @@
             <div class="col-lg-4 col-6 sm-offset-3 mb-3 float-left">
                 <img :src="issuesImg" alt="Issues" class="w-inherit"/>
                 <div class="contribution tooltipped tooltipped-s" aria-label="Issues">
-                    10
+                    {{ issues.length }}
                 </div>
             </div>
             <div class="col-lg-4 col-6 sm-offset-3 float-left">
@@ -26,13 +26,21 @@
                     200
                 </div>
             </div>
-            <div class="col-12 float-left contributors">
-                <div class="mt-4">
-                    Colaboradores
+            <div class="col-12 float-left">
+                <div class="my-4">
+                    <strong>
+                        Colaboradores
+                    </strong>
+                    <div class="col-12">
+                        <a 
+                            v-for="contributor in contributors" :key="contributor.id"
+                            :href="contributor.html_url" target="_blank" rel="noopener noreferrer"
+                            class="tooltipped tooltipped-n" :aria-label="contributor.login"
+                        >
+                            <img :src="contributor.avatar_url" alt="Avatar" class="avatar avatar-8 mx-1"/>
+                        </a>
+                    </div>
                 </div>
-                <h1>
-                    Here comes contributors avatars
-                </h1>
             </div>
             <div class="col-12 float-left post-scriptum">
                 <small>
@@ -55,12 +63,33 @@ export default {
             repoOwner: String,
             issuesImg: require('@/assets/images/issues.png'),
             pullRequestsImg: require('@/assets/images/pull-request.png'),
-            commitsImg: require('@/assets/images/commit.png')
+            commitsImg: require('@/assets/images/commit.png'),
+            issues: Object,
+            contributors: {}
         }
     },
+
+    methods: {
+        getOctoberIssues(issues, currentYear) {
+            this.issues = issues.data.filter(i => {
+                return Date(i.created_at) >= Date(`${currentYear}-10-01`) &&
+                       Date(i.created_at) <= Date(`${currentYear}-10-31`);
+            });
+        },
+
+        getContributors(){
+            this.issues.forEach(issue => {
+                console.log(issue);
+                this.contributors[issue.user.id] = issue.user;
+            });
+        }
+    },
+
     mounted(){
         this.repoName = this.$route.params.name;
         this.repoOwner = this.$route.params.owner;
+        this.getOctoberIssues(this.$route.params.issues, this.$route.params.currentYear);
+        this.getContributors();
     }
 }
 </script>
@@ -84,5 +113,9 @@ export default {
 
     .post-scriptum {
         font-size: 0.8rem;
+    }
+
+    .avatar {
+        border-radius: 2rem;
     }
 </style>

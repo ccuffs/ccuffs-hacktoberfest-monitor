@@ -21,12 +21,18 @@
 </template>
 
 <script>
+
+import axios from 'axios';
+
 export default {
     name: 'Repository',
 
     data(){
         return {
-            imagePath: require(`@/assets/images/${this.image}`)
+            imagePath: require(`@/assets/images/${this.image}`),
+            issues: String,
+            pullRequests: String,
+            commits: String
         }
     },
 
@@ -42,13 +48,42 @@ export default {
         image: {
             type: String,
             required: true
+        },
+        currentYear: {
+            type: Number,
+            default: new Date().getFullYear()
         }
     },
 
     methods: {
         showRepo(){
-            this.$router.push({ name: 'Show', params: { name: this.name, owner: this.owner } });
+            let routeOptions = {
+                name: 'Show',
+                params: { 
+                    name: this.name,
+                    owner: this.owner,
+                    currentYear: this.currentYear,
+                    issues: this.issues
+                }
+            }
+            this.$router.push(routeOptions);
+        },
+
+        fetchContributions(){
+            let baseUrl = `https://api.github.com/repos/${this.owner}/${this.name}`;
+            
+            axios.get(`${baseUrl}/issues?since=${this.currentYear}-10-01`)
+            .catch((err)=> {
+                console.log(err);
+            })
+            .then((response)=> {
+                this.issues = response;
+            });
         }
+    },
+
+    created(){
+        this.fetchContributions();
     }
 }
 </script>
