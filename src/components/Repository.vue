@@ -10,10 +10,10 @@
                         {{ name.toUpperCase() }}
                     </h2>
                 </div>
-                <div class="contributions">
-                    <h4 class="left light-orange">
-                        Soon!!
-                    </h4>
+                <div class="description">
+                    <div class="left">
+                        {{ repoInfo.description }}
+                    </div>
                 </div>
             </div>
         </div>
@@ -30,9 +30,7 @@ export default {
     data(){
         return {
             imagePath: require(`@/assets/images/${this.image}`),
-            issues: String,
-            pullRequests: String,
-            commits: String
+            repoInfo: Object
         }
     },
 
@@ -49,9 +47,10 @@ export default {
             type: String,
             required: true
         },
-        currentYear: {
-            type: Number,
-            default: new Date().getFullYear()
+        baseUrl: {
+            type: String,
+            required: false,
+            default: 'https://api.github.com/repos'
         }
     },
 
@@ -61,29 +60,25 @@ export default {
                 name: 'Show',
                 params: { 
                     name: this.name,
-                    owner: this.owner,
-                    currentYear: this.currentYear,
-                    issues: this.issues
+                    owner: this.owner
                 }
             }
             this.$router.push(routeOptions);
         },
 
-        fetchContributions(){
-            let baseUrl = `https://api.github.com/repos/${this.owner}/${this.name}`;
-            
-            axios.get(`${baseUrl}/issues?since=${this.currentYear}-10-01`)
-            .catch((err)=> {
-                console.log(err);
+        fetchRepoDescription(){
+            axios.get(`${this.baseUrl}/${this.owner}/${this.name}`)
+            .then(response => {
+                this.repoInfo = response.data;
             })
-            .then((response)=> {
-                this.issues = response;
+            .catch(err => {
+                console.log(err);
             });
         }
     },
 
-    created(){
-        this.fetchContributions();
+    mounted(){
+        this.fetchRepoDescription();
     }
 }
 </script>
