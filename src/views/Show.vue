@@ -31,18 +31,28 @@
                     <strong>
                         Colaboradores
                     </strong>
-                    <div class="col-12">
-                        <a 
-                            v-for="contributor in contributors" :key="contributor.id"
-                            :href="contributor.html_url" target="_blank" rel="noopener noreferrer"
-                            class="tooltipped tooltipped-n" :aria-label="contributor.login"
-                        >
-                            <img :src="contributor.avatar_url" alt="Avatar" class="avatar avatar-8 mx-1"/>
-                        </a>
+                    <div class="mt-4">
+                        <div class="col-12">
+                            <a 
+                                v-for="contributor in contributors" :key="contributor.id"
+                                :href="contributor.html_url" target="_blank" rel="noopener noreferrer"
+                                class="tooltipped tooltipped-n" :aria-label="contributor.login"
+                            >
+                                <img :src="contributor.avatar_url" alt="Avatar" class="avatar mx-2" width="90"/>
+                            </a>
+                            <!--
+                                TODO: find out why a computed property isn't working
+                            -->
+                            <template v-if="!Object.keys(contributors).length">
+                                <div>
+                                    Não há nenhuma contribuição nesse período ;( 
+                                </div>
+                            </template>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-12 float-left post-scriptum">
+            <div v-if="Object.keys(contributors).length" class="col-12 float-left post-scriptum">
                 <small>
                     Contribuições relativas ao período de 01/10/2020
                     à 31/10/2020
@@ -55,6 +65,9 @@
 </template>
 
 <script>
+
+import axios from 'axios';
+
 export default {
     name: 'ShowRepository',
     data(){
@@ -64,22 +77,39 @@ export default {
             issuesImg: require('@/assets/images/issues.png'),
             pullRequestsImg: require('@/assets/images/pull-request.png'),
             commitsImg: require('@/assets/images/commit.png'),
-            issues: Object,
+            issues: {},
             contributors: {}
         }
     },
 
+    props: {
+        currentYear: {
+            type: Number,
+            default: new Date().getFullYear()
+        }
+    },
+
     methods: {
-        getOctoberIssues(issues, currentYear) {
-            this.issues = issues.data.filter(i => {
-                return Date(i.created_at) >= Date(`${currentYear}-10-01`) &&
-                       Date(i.created_at) <= Date(`${currentYear}-10-31`);
+        fetchContributions(){
+            let baseUrl = `https://api.github.com/repos/${this.repoOwner}/${this.repoName}`;
+            
+            axios.get(`${baseUrl}/issues?since=${this.currentYear}-10-01`)
+            .catch((err) => {
+                console.log(err);
+            })
+            .then((response) => {
+                if(response.data) {
+                    this.issues = response.data.filter(i => {
+                        return Date(i.created_at) >= Date(`${this.currentYear}-10-01`) &&
+                               Date(i.created_at) <= Date(`${this.currentYear}-10-31`);
+                    });
+                    this.getContributors();
+                }
             });
         },
 
         getContributors(){
             this.issues.forEach(issue => {
-                console.log(issue);
                 this.contributors[issue.user.id] = issue.user;
             });
         }
@@ -88,8 +118,7 @@ export default {
     mounted(){
         this.repoName = this.$route.params.name;
         this.repoOwner = this.$route.params.owner;
-        this.getOctoberIssues(this.$route.params.issues, this.$route.params.currentYear);
-        this.getContributors();
+        this.fetchContributions();
     }
 }
 </script>
@@ -116,6 +145,7 @@ export default {
     }
 
     .avatar {
-        border-radius: 2rem;
+        border-radius: 3.5rem;
+        border: 3px solid #ffffff;
     }
 </style>
