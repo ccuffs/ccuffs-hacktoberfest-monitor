@@ -8,7 +8,7 @@
             </svg> 
             by 
             <a href="https://uffs.cc" target="_blank"
-                rel="noopener noreferrer" class="footer__link"
+                rel="noopener noreferrer" class="footer__link orange"
             >
                 CCUFFS.
             </a>

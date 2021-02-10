@@ -60,7 +60,8 @@ export default {
                 name: 'Show',
                 params: { 
                     name: this.name,
-                    owner: this.owner
+                    owner: this.owner,
+                    url: this.repoInfo.html_url
                 }
             }
             this.$router.push(routeOptions);
