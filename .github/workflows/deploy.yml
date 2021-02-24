@@ -1,0 +1,34 @@
+name: deploy
+on:
+  push:
+    branches:
+      - master
+env:
+  PROD_HOST: hacktoberfest.uffs.cc
+  PROD_WEB_DIRECTORY: /home/ccuffshacktober/hacktoberfest.uffs.cc
+  PROD_WEB_URL: https://hacktoberfest.uffs.cc
+jobs:
+  build-deploy-audit:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '14.10'
+    - name: Build app
+      run: |
+        sudo npm install
+        sudo npm run build
+    - name: Deploy site via SSH
+      uses: garygrossgarten/github-action-scp@release
+      with:
+        local: ${{ github.workspace }}/dist/
+        remote: ${{ env.PROD_WEB_DIRECTORY }}/
+        host: ${{ env.PROD_HOST }}
+        username: ${{ secrets.PROD_USERNAME }}
+        password: ${{ secrets.PROD_PASSWORD }}
+    - name: Summary
+      run: |
+        echo "Summary:"
+        echo " Live URL: ${{ env.PROD_WEB_URL }}"
