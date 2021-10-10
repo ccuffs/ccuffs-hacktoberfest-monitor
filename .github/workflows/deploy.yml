@@ -28,6 +28,7 @@ jobs:
         host: ${{ env.PROD_HOST }}
         username: ${{ secrets.PROD_USERNAME }}
         password: ${{ secrets.PROD_PASSWORD }}
+        concurrency: 5
     - name: Summary
       run: |
         echo "Summary:"
