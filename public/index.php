@@ -32,22 +32,22 @@ $commits = get_commits_from_organization($token, $organization, $start_date, $en
     <!-- Configurações gerais -->
     <title>Hacktoberfest - Ciência da Computação - UFFS</title>
     
-    <meta name="description" content="Descrição do site"/>
+    <meta name="description" content="Monitor de atividades da hacktoberfest"/>
     <meta name="keywords" content="keyword 1, keyword 2, keyword 3"/>
-    <meta name="author" content="Author name" />
+    <meta name="author" content="Curso de Ciência da Computação - Universidade Federal da Fronteira Sul" />
     <meta name="copyright" content="Copyright owner" />
     <meta name="language" content="Portuguese">
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="canonical" href="https://cc.uffs.edu.br/">
+    <link rel="canonical" href="https://hacktoberfest.uffs.cc">
     
     <!-- Coisas sociais -->
-    <meta property="og:locale" content="en">
+    <meta property="og:locale" content="pt_BR">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Inicial">
-    <meta property="og:url" content="https://cc.uffs.edu.br/">
+    <meta property="og:title" content="Hacktoberfest">
+    <meta property="og:url" content="https://hacktoberfest.uffs.cc">
     <meta property="og:site_name" content="Ciência da Computação">
 
     <!-- Google Fonts -->
@@ -58,14 +58,7 @@ $commits = get_commits_from_organization($token, $organization, $start_date, $en
     <link rel="stylesheet" type="text/css" href="./assets/3rdparty/froala-design-blocks-2.0.1/css/froala_blocks.min.css">
     
     <!-- 3rdparty icons. O recomendado para desempenho é usar apenas um. -->
-    <link rel="stylesheet" type="text/css" href="./assets/3rdparty/line-awesome-1.3.0/css/line-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="./assets/3rdparty/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="./assets/3rdparty/rpg-awesome-1.0.0/css/rpg-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="./assets/3rdparty/devicons-1.8.0/css/devicons.min.css">
-
-    <!-- 3rdparty loaders/animations. O recomendado para desempenho é usar apenas um de cada. -->
-    <link rel="stylesheet" type="text/css" href="./assets/3rdparty/load-awesome-1.1.0/css/ball-scale-ripple-multiple.min.css">
-    <link rel="stylesheet" type="text/css" href="./assets/3rdparty/spinkit-2.0.1/spinkit.min.css">
     
     <!-- CSS do próprio site -->
     <link rel="stylesheet" type="text/css" href="./assets/css/app.css">
